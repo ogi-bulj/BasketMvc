@@ -1,39 +1,43 @@
 ﻿@model BasketMvc.Models.Product
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Product";
 }
 
-<h1>Edit</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-5 text-center my-4">Edit Product</h1>
 
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
-            <div class="form-group">
-                <label asp-for="Naziv" class="control-label"></label>
-                <input asp-for="Naziv" class="form-control" />
-                <span asp-validation-for="Naziv" class="text-danger"></span>
+            <hr />
+
+            <form asp-action="Edit" method="post" class="mt-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group mb-2">
+                    <label asp-for="Naziv" class="control-label"></label>
+                    <input asp-for="Naziv" class="form-control" />
+                    <span asp-validation-for="Naziv" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-4">
+                    <label asp-for="Cijena" class="control-label"></label>
+                    <input asp-for="Cijena" class="form-control" />
+                    <span asp-validation-for="Cijena" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+
+            <div class="mt-4 text-center">
+                <a asp-action="Index">Back to List</a>
             </div>
-            <div class="form-group">
-                <label asp-for="Cijena" class="control-label"></label>
-                <input asp-for="Cijena" class="form-control" />
-                <span asp-validation-for="Cijena" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
