@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using BasketMvc.Data;
+using MvcMovie.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BasketMvcContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BasketMvcContext") ?? throw new InvalidOperationException("Connection string 'BasketMvcContext' not found.")));
@@ -9,6 +10,13 @@ builder.Services.AddDbContext<BasketMvcContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

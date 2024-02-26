@@ -23,22 +23,22 @@ namespace BasketMvc.Migrations
 
             modelBuilder.Entity("BasketMvc.Models.Product", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Cijena")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Naziv")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.ToTable("Product");
+                    b.HasKey("Id");
+
+                    b.ToTable("Product", (string)null);
                 });
 #pragma warning restore 612, 618
         }
